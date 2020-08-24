@@ -1,6 +1,7 @@
 const toDoInput = document.querySelector('.todo__input');
 const toDoButton = document.querySelector('.todo__button');
 const toDoList = document.querySelector('.todo__list');
+const filter = document.querySelector('.filter');
 
 
 
@@ -8,10 +9,6 @@ const toDoList = document.querySelector('.todo__list');
 
 const addToDo = (e) => {
     e.preventDefault();
-
-    
-
-
 
     const toDoItem = document.createElement('div');
     toDoItem.classList.add('itembox');
@@ -42,7 +39,6 @@ const addToDo = (e) => {
 
     toDoList.prepend(toDoItem);
     toDoInput.value = '';
-
 }
 
 
@@ -67,9 +63,36 @@ const deleteAndCheck = (e) =>{
 }
 
 
+function selectToDo(e) {
+    const items = toDoList.childNodes;
+    items.forEach(function(element){
+
+        if(e.target.value === "completed"){
+            if(element.classList.contains("completed")){
+                    element.style.display = "block";
+                } else {
+                    element.style.display = "none";
+                }
+            }
+        else if(e.target.value === "uncompleted") {
+                if(!element.classList.contains("completed")){
+                    element.style.display = "block";
+                } else {
+                    element.style.display = "none";
+                }
+            }
+        else {
+            element.style.display = "block";
+            }  
+    });
+}   
+      
+
+
 
 
 
 
 toDoButton.addEventListener('click', addToDo);
 toDoList.addEventListener('click', deleteAndCheck);
+filter.addEventListener('click', selectToDo);
