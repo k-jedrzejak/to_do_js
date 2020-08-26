@@ -84,6 +84,7 @@ function selectToDo(e) {
 
 const changeBg = (e) => {
     const body = document.querySelector('body');
+    const input = document.querySelector('.todo__input');
     const key = e.keyCode;
     console.log(key);
     
@@ -94,12 +95,16 @@ const changeBg = (e) => {
     const r1 = Math.floor(Math.random()*256);
     const g1 = Math.floor(Math.random()*256);
     const b1 = Math.floor(Math.random()*256);
+    
 
-    if (key === 32) {
-        console.log(body);
+    if (input != document.activeElement){
 
-        body.style.backgroundImage = `linear-gradient(360deg, rgb(${r},${g},${b}), rgb(${r1},${g1},${b1}))`;    
-    }
+        if (key === 32) {
+            console.log(body);
+
+            body.style.backgroundImage = `linear-gradient(360deg, rgb(${r},${g},${b}), rgb(${r1},${g1},${b1}))`;    
+        }
+}
 }
       
 
