@@ -15,7 +15,7 @@ const addToDo = (e) => {
     const taskNumber = itemNumber.length
     const countNumber = document.createElement('div');
     countNumber.classList.add("task-number");
-    countNumber.innerText = `Task: ${taskNumber}`;
+    countNumber.innerText = `Task: ${taskNumber + 1} `;
     toDoItem.appendChild(countNumber);
 
     const completeButton = document.createElement('button'); 
