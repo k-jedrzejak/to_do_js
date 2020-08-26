@@ -5,11 +5,6 @@ const filter = document.querySelector('.filter');
 
 
 
-
-
-
-
-
 const addToDo = (e) => {
     e.preventDefault();
 
@@ -105,15 +100,8 @@ const changeBg = (e) => {
 
         body.style.backgroundImage = `linear-gradient(360deg, rgb(${r},${g},${b}), rgb(${r1},${g1},${b1}))`;    
     }
-
-   
-
 }
       
-
-
-
-
 
 toDoButton.addEventListener('click', addToDo);
 toDoList.addEventListener('click', deleteAndCheck);
