@@ -1,9 +1,300 @@
-.removed {
+/* general */
 
+:root {
+    --bg-color1: #90dcc8;
+    --bg-color2: #9da2a1;
+    --main-color: #338d77;
+    --main-color-darker: #2e6e5e;
+    --dark-color:#3a3a3a;
+    --green: #5fab71;
+    --green-darker:#4d8a5b;
+    --red:#c86079;
+    --red-darker:#a45467;
+    --transition: all .5s linear;
+  }
+
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-image: linear-gradient(360deg, var(--bg-color1), var(--bg-color2));
+    background-size: 400% 400%;
+    animation: bg 20s linear infinite;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;   
+}
+
+.info{
+    text-align: right;
+    font-size: 10px;
+    padding: 5px;
+}
+
+h1 {
+    margin:0;
+    padding: 20px;
+    text-transform: uppercase;
+}
+
+.center {
+    text-align: center;
+}
+
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    min-height: 100vh;
+}
+
+
+/*form*/
+
+form {
+    display: flex;
+    justify-content: center;
+}
+
+.todo__input {
+    border: 0;
+    padding: 5px;
+    font-size: 1rem;
+    transition: var(--transition);
+    color: var(--dark-color);
+}
+
+.todo__input:focus {
+    box-shadow: 0px 0px 10px #fff; 
+}
+
+.todo__input:focus,
+.todo__button,
+.itembox__btn:focus,
+.filter:focus  {
+    outline: none;
+}
+
+.todo__button {
+    border: 0;
+    font-size: 1.9rem;
+    background: var(--main-color);
+    line-height: 1;
+    padding: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.fa-plus-circle {
+    color: #fff;
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+
+.todo__button:hover {
+    background: var(--main-color-darker);
+}
+
+
+.select {
+    height: auto;
+    display: flex;
+    margin-left: 16px;
+    position: relative;
+}
+
+.select:after {
+    content: '\f078';
+    font: normal normal normal 20px/1 FontAwesome;
+    background: var(--main-color);
+    right: 0px;
+    top: 50%;
+    transform: translate(0,-50%);
+    padding: 11px 5px;
+    position: absolute;
+    pointer-events: none;
+    transition: var(--transition);
+}
+
+.select:hover::after {
+    background: var(--main-color-darker) ;
+    transition: all 1s ease;
+}
+
+.filter {
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 5px;
+    width: 8rem;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: .7rem;
+    text-transform: uppercase;
+}
+
+.filter:hover {
+    outline: none;
+}
+
+
+.filter:focus{
+    box-shadow: -2px 0px 10px #fff;
+}
+
+.todo__list {
+    padding: 30px 0px;
+    list-style: none;
+    max-width: 380px;
+    width: 100%;
+    margin: auto;
+}
+
+.itembox {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    transition: all 1s ease;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: .5;
+    color: var(--dark-color);
+}
+
+.removed {
     transform: translateY(6rem);
     opacity: 0;
 }
 
-.itembox {
-    transition: all 1s ease;
+
+.itembox__item {
+    max-width: 300px;
+    width: 100%;
+    text-align: left;
+    background: white;
+    color: var(--dark-color);
+    vertical-align: middle;
+    line-height: 2.5;
+    padding: 0 5px;
+    box-sizing: border-box;
+    order: 2;
+    transition: var(--transition);
+}
+
+.itembox__item:hover,
+.shadow {
+    box-shadow: 0px 0px 15px #fff;
+}
+
+.task-number{
+    order: 1;
+    flex-basis: 100%;
+    text-align: left;
+    font-size: .7rem;
+}
+
+.itembox__btn {
+    border: 0;
+    font-size: 1.9rem;
+    line-height: 1;
+    padding: 5px;
+    cursor: pointer;
+    width: 40px;
+}
+
+
+.itembox__btn--complete {
+    background: var(--green);    
+    transition: var(--transition);
+    order: 3;
+}
+
+.itembox__btn--complete:hover {
+    background: var(--green-darker);   
+}
+
+.itembox__btn--delete {
+    background: var(--red);
+    transition: var(--transition);
+    order: 4;
+}
+
+.itembox__btn--delete:hover {
+    background: var(--red-darker);
+}
+
+.fa-check-circle, .fa-minus-circle {
+    color: #fff;
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.itembox__btn:hover ~ .itembox__item {
+    box-shadow: -2px 0px 10px #fff;
+}
+
+
+
+/* animation */
+
+@keyframes bg {
+    0%  {background-position:50% 0%}
+    50% {background-position:50% 100%}
+    100%{background-position:50% 0%}
+}
+
+
+/*media queries*/
+
+@media only screen and (max-width: 600px) {
+
+    body {
+        min-height: 100vh;
+        background-size: cover;
+        animation: none;
+    }
+    .container {
+        min-height: auto;
+    }
+
+    form {
+        flex-wrap: wrap;
+    }
+
+    .todo__input{
+        width: 80%;
+    }
+
+    .filter{
+        width: 100%;
+        padding: 10px;
+    }
+
+    .select {
+        width: 14rem;
+        margin: 15px 0 0;
+        width: 15rem;
+    }
+
+    .select:after {
+        padding: 7px 5px;
+    }
+
+    .itembox {
+        justify-content: center;
+    }
+
+    .task-number {
+        text-align: center;
+    }
+
+    .itembox__item {
+        max-width: none;
+        width: 70%;
+    }
 }
